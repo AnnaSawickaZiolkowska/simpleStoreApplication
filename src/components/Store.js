@@ -6,6 +6,7 @@ import ShopInterface from "./ShopInterface";
 import { useModal } from "../hooks/useModal";
 import CartPage from "./CartPage";
 import CloseIcon from "@material-ui/icons/Close";
+import { useEffect } from "react";
 
 const ProductsWrapper = styled.ul`
   list-style: none;
@@ -41,10 +42,24 @@ const CloseIconStyle = styled(CloseIcon)`
 
 const Store = () => {
   const [cart, setCart] = useState([]);
+  const getLocalData = () => {
+    const localData = localStorage.getItem("productId");
+    return localData ? JSON.parse(localData) : [];
+  };
+
+  const [productId, setProductId] = useState(getLocalData());
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
 
+  const localData = localStorage.getItem("productId");
+  console.log(localData);
+
+  useEffect(() => {
+    localStorage.setItem("productId", JSON.stringify(productId));
+  }, [productId]);
+
   const addToCart = (id) => {
+    setProductId([...productId, { id }]);
     setCart((cart) => {
       const exsistingItem = cart.find((cartItem) => cartItem.id === id);
       if (!exsistingItem) {
@@ -59,6 +74,7 @@ const Store = () => {
     });
   };
 
+  console.log(productId);
   const subtractFromCart = (id) => {
     setCart((cart) => {
       const exsistingItem = cart.find((cartItem) => cartItem.id === id);
