@@ -60,6 +60,7 @@ const Store = () => {
 
   const addToCart = (id) => {
     setProductId([...productId, { id }]);
+    // setProductId([]);
     setCart((cart) => {
       const exsistingItem = cart.find((cartItem) => cartItem.id === id);
       if (!exsistingItem) {
