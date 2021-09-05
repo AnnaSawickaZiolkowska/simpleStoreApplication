@@ -8,7 +8,9 @@ Simple web application that allows you to display the list of products, add a pr
 ## Tech Stack
 
 * React
+* Hooks
 * Styled Components
+* Local Storage
 * API
 
 ## Live Demo & Setup
