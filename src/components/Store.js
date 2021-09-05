@@ -1,12 +1,13 @@
 import Products from "./Products";
 import styled from "styled-components";
 import useFetchData from "../hooks/useFetchData";
-import { useState } from "react";
+// import { useState } from "react";
 import ShopInterface from "./ShopInterface";
 import { useModal } from "../hooks/useModal";
 import CartPage from "./CartPage";
 import CloseIcon from "@material-ui/icons/Close";
-import { useEffect } from "react";
+// import { useEffect } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const ProductsWrapper = styled.ul`
   list-style: none;
@@ -41,41 +42,23 @@ const CloseIconStyle = styled(CloseIcon)`
 `;
 
 const Store = () => {
-  const [cart, setCart] = useState([]);
-  const getLocalData = () => {
-    const localData = localStorage.getItem("productId");
-    return localData ? JSON.parse(localData) : [];
-  };
-
-  const [productId, setProductId] = useState(getLocalData());
+  const [cart, setCart] = useLocalStorage("cartList", []);
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
 
-  const localData = localStorage.getItem("productId");
-  console.log(localData);
-
-  useEffect(() => {
-    localStorage.setItem("productId", JSON.stringify(productId));
-  }, [productId]);
-
   const addToCart = (id) => {
-    setProductId([...productId, { id }]);
-    // setProductId([]);
-    setCart((cart) => {
-      const exsistingItem = cart.find((cartItem) => cartItem.id === id);
-      if (!exsistingItem) {
-        return [...cart, { id, orderCount: 1 }];
-      } else {
-        return cart.map((cartItem) =>
-          cartItem === exsistingItem
-            ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
-            : cartItem
-        );
-      }
-    });
+    setCart(
+      cart.find((cartItem) => cartItem.id === id)
+        ? cart.map((cartItem) =>
+            cartItem === cart.find((cartItem) => cartItem.id === id)
+              ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
+              : cartItem
+          )
+        : [...cart, { id, orderCount: 1 }]
+    );
   };
+  console.log(cart);
 
-  console.log(productId);
   const subtractFromCart = (id) => {
     setCart((cart) => {
       const exsistingItem = cart.find((cartItem) => cartItem.id === id);

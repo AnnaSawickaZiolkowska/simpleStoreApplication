@@ -26,7 +26,7 @@ const CartPage = ({
       </HeaderStyle>
       {cartItemsJoinedWithProducts.map((cartItem, index) => (
         <div key={index}>
-          <main style={{ marginBottom: "30px", width: "100%"}}>
+          <main style={{ marginBottom: "30px", width: "100%", borderBottom: "1px solid lightgrey", paddingBottom: "20px"}}>
             <CartItem
               brand={cartItem.brand}
               name={cartItem.name}
