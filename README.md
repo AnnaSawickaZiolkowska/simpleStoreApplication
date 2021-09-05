@@ -10,3 +10,11 @@ Simple web application that allows you to display the list of products, add a pr
 * React
 * Styled Components
 * API
+
+## Live Demo & Setup
+
+<br>
+
+Clone this repo and run `$ npm install` to install all dependecies.
+Once all the dependecies are installed, you can run `$ npm start` to start the application.
+It runs the app in the development mode.
