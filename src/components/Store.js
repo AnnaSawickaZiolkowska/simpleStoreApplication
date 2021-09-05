@@ -47,31 +47,28 @@ const Store = () => {
   const products = useFetchData();
 
   const addToCart = (id) => {
+    const exsistingItem = cart.find((cartItem) => cartItem.id === id)
     setCart(
-      cart.find((cartItem) => cartItem.id === id)
+      exsistingItem
         ? cart.map((cartItem) =>
-            cartItem === cart.find((cartItem) => cartItem.id === id)
+            cartItem === exsistingItem
               ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
               : cartItem
           )
         : [...cart, { id, orderCount: 1 }]
     );
   };
-  console.log(cart);
 
   const subtractFromCart = (id) => {
-    setCart((cart) => {
-      const exsistingItem = cart.find((cartItem) => cartItem.id === id);
-      if (exsistingItem.orderCount > 1) {
-        return cart.map((cartItem) =>
-          cartItem === exsistingItem
+    const exsistingItem = cart.find((cartItem) => cartItem.id === id)
+    setCart(
+      exsistingItem.orderCount > 1 ? cart.map((cartItem) =>
+          cartItem === cart.find((cartItem) => cartItem.id === id)
             ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
             : cartItem
-        );
-      } else {
-        return cart.filter((cartItem) => cartItem !== exsistingItem);
-      }
-    });
+        ) :
+      cart.filter((cartItem) => cartItem !== exsistingItem)
+    );
   };
 
   const orderCount = cart.reduce(
