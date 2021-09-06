@@ -1,19 +1,18 @@
 import Products from "./Products";
 import styled from "styled-components";
 import useFetchData from "../hooks/useFetchData";
-// import { useState } from "react";
 import ShopInterface from "./ShopInterface";
 import { useModal } from "../hooks/useModal";
 import CartPage from "./CartPage";
 import CloseIcon from "@material-ui/icons/Close";
-// import { useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
 const ProductsWrapper = styled.ul`
   list-style: none;
-  padding: 40px 100px;
+  padding: 40px 0px;
+  margin: 0 5%;
   display: grid;
-  margin: 0;
+  justify-content: center;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-auto-rows: 430px;
   grid-gap: 20px;
@@ -22,6 +21,7 @@ const ProductWrapper = styled.li`
   display: grid;
   justify-items: center;
   min-width: 290px;
+  max-width: 360px;
   background-color: #f2f2f2;
   padding: 20px 10px 20px 30px;
   border-radius: 10px;
@@ -47,7 +47,7 @@ const Store = () => {
   const products = useFetchData();
 
   const addToCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id)
+    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
     setCart(
       exsistingItem
         ? cart.map((cartItem) =>
@@ -60,14 +60,15 @@ const Store = () => {
   };
 
   const subtractFromCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id)
+    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
     setCart(
-      exsistingItem.orderCount > 1 ? cart.map((cartItem) =>
-          cartItem === cart.find((cartItem) => cartItem.id === id)
-            ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
-            : cartItem
-        ) :
-      cart.filter((cartItem) => cartItem !== exsistingItem)
+      exsistingItem.orderCount > 1
+        ? cart.map((cartItem) =>
+            cartItem === cart.find((cartItem) => cartItem.id === id)
+              ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
+              : cartItem
+          )
+        : cart.filter((cartItem) => cartItem !== exsistingItem)
     );
   };
 

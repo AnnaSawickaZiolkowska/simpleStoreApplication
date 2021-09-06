@@ -22,7 +22,8 @@ const BasketButtonStyle = styled.button`
 const FlexCenterStyle = styled.div`
   display: flex;
   align-items: flex-end;
-  justify-content: center;
+  // justify-content: center;
+  justify-self: flex-start;
 `;
 
 const Products = ({ caption, id, price, picture, onBuyClick }) => {
