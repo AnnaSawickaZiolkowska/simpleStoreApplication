@@ -6,6 +6,7 @@ import { useModal } from "../hooks/useModal";
 import CartPage from "./CartPage";
 import CloseIcon from "@material-ui/icons/Close";
 import useLocalStorage from "../hooks/useLocalStorage";
+import Test from "./Test";
 
 const ProductsWrapper = styled.ul`
   list-style: none;
@@ -122,6 +123,7 @@ const Store = () => {
             );
           })}
       </ProductsWrapper>
+      <Test/>
     </div>
   );
 };
