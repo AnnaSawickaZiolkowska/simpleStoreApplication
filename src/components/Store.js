@@ -6,6 +6,7 @@ import { useModal } from "../hooks/useModal";
 import CartPage from "./CartPage";
 import CloseIcon from "@material-ui/icons/Close";
 import useLocalStorage from "../hooks/useLocalStorage";
+import { connect, useDispatch, useSelector } from "react-redux";
 
 const ProductsWrapper = styled.ul`
   list-style: none;
@@ -41,10 +42,16 @@ const CloseIconStyle = styled(CloseIcon)`
   margin: 12px 25px;
 `;
 
-const Store = () => {
+const Store = (props) => {
   const [cart, setCart] = useLocalStorage("cartList", []);
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
+
+const dispatch = useDispatch();
+const cartTest = useSelector(state => state.cart)
+
+  // const {cart} = props;
+  console.log(props);
 
   const addToCart = (id) => {
     const exsistingItem = cart.find((cartItem) => cartItem.id === id);
@@ -126,4 +133,10 @@ const Store = () => {
   );
 };
 
-export default Store;
+const mapStateToProps = (state) => {
+  return {
+    cart: state.cart
+  }
+}
+
+export default connect(mapStateToProps)(Store);
