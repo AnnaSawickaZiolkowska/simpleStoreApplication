@@ -47,8 +47,8 @@ const Store = (props) => {
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
 
-const dispatch = useDispatch();
-const cartTest = useSelector(state => state.cart)
+  const dispatch = useDispatch();
+const cartTest = useSelector(state => state.cartTest)
 
   // const {cart} = props;
   console.log(props);

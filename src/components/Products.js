@@ -27,6 +27,9 @@ const FlexCenterStyle = styled.div`
 `;
 
 const Products = ({ caption, id, price, picture, onBuyClick }) => {
+
+
+
   return (
     <>
       <FlexCenterStyle>
