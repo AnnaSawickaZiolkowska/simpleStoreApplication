@@ -42,16 +42,16 @@ const CloseIconStyle = styled(CloseIcon)`
   margin: 12px 25px;
 `;
 
-const Store = (props) => {
+const Store = () => {
   const [cart, setCart] = useLocalStorage("cartList", []);
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
 
   const dispatch = useDispatch();
-const cartTest = useSelector(state => state.cartTest)
+// const cartTest = useSelector(state => state.cartTest)
 
   // const {cart} = props;
-  console.log(props);
+  // console.log(props);
 
   const addToCart = (id) => {
     const exsistingItem = cart.find((cartItem) => cartItem.id === id);
@@ -133,10 +133,11 @@ const cartTest = useSelector(state => state.cartTest)
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    cart: state.cart
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     cart: state.cart
+//   }
+// }
 
-export default connect(mapStateToProps)(Store);
+// export default connect(mapStateToProps)(Store);
+export default Store;
