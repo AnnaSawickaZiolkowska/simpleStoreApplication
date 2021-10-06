@@ -21,15 +21,25 @@ const OrderCountStyle = styled.div`
   font-size: 16px;
 `;
 
-const CartItem = ({
-  brand,
-  caption,
-  price,
-  picture,
-  orderCount,
-  onAddButton,
-  onMinusButton,
-}) => {
+interface Props {
+  brand: string;
+  caption: string;
+  price: number;
+  picture: string;
+  orderCount: number;
+  onAddButton: Function;
+  onMinusButton: Function;
+}
+
+  const CartItem: React.FC<Props> = ({
+    brand,
+    caption,
+    price,
+    picture,
+    orderCount,
+    onAddButton,
+    onMinusButton,
+  }) => {
   return (
     <>
       <CartItemStyle>
