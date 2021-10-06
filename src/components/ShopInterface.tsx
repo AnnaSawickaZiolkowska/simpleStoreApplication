@@ -25,8 +25,12 @@ const ShopInterfaceWrapper = styled.div`
   align-items: center;
   cursor: pointer;
 `;
+interface Props {
+  openModal: Function;
+  orderCount: Number;
+}
 
-const ShopInterface = ({ openModal, orderCount }) => {
+const ShopInterface: React.FC<Props> = ({ openModal, orderCount }) => {
   return (
     <ShopInterfaceWrapper onClick={openModal}>
       <div>Przejdź do koszyka</div>

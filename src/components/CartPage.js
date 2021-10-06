@@ -26,7 +26,6 @@ border-bottom: 1px solid lightgrey;
   cartItemsJoinedWithProducts,
 }) => {
 
-  console.log(typeof cartItemsJoinedWithProducts);
   return (
     <div>
       <HeaderStyle>
