@@ -12,12 +12,21 @@ border-top: 1px solid lightgrey;
 border-bottom: 1px solid lightgrey;
 `;
 
-const CartPage = ({
+// interface Props {
+//   addToCart: Function;
+//   subtractFromCart: Function;
+//   cartItemsJoinedWithProducts: any;
+
+// }
+
+// const CartPage: React.FC<Props> = ({
+  const CartPage = ({
   addToCart,
   subtractFromCart,
   cartItemsJoinedWithProducts,
 }) => {
 
+  console.log(typeof cartItemsJoinedWithProducts);
   return (
     <div>
       <HeaderStyle>

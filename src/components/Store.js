@@ -123,7 +123,7 @@ const Store = () => {
                   id={product.id}
                   price={product.price}
                   picture={product.pictures[0].small}
-                  onBuyClick={(id) => addToCart(product.id)}
+                  onBuyClick={(event: React.MouseEvent) => addToCart(product.id)}
                 />
               </ProductWrapper>
             );

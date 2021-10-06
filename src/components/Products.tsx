@@ -26,9 +26,15 @@ const FlexCenterStyle = styled.div`
   justify-self: flex-start;
 `;
 
-const Products = ({ caption, id, price, picture, onBuyClick }) => {
+interface Props {
+  caption: string;
+  id: Number;
+  price: Number;
+  picture: string;
+  onBuyClick: Function;
+}
 
-
+const Products: React.FC<Props> = ({ caption, id, price, picture, onBuyClick }) => {
 
   return (
     <>
