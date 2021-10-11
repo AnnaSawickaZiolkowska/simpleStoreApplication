@@ -42,22 +42,41 @@ const CloseIconStyle = styled(CloseIcon)`
   margin: 12px 25px;
 `;
 
+export interface IProducts {
+  id: number;
+  brand: string;
+  name: string;
+  caption: string;
+  unit: string;
+  price: number;
+  pictures: any;
+  [index: number]: number;
+  // onBuyClick: Function;
+  onBuyClick: React.MouseEventHandler;
+
+  
+}
 const Store = () => {
   const [cart, setCart] = useLocalStorage("cartList", []);
   const { isOpen, openModal, closeModal } = useModal();
   const products = useFetchData();
 
   const dispatch = useDispatch();
+  interface ICartItem {
+    id: number;
+    orderCount: number;
+  }
+  
 // const cartTest = useSelector(state => state.cartTest)
 
-  // const {cart} = props;
-  // console.log(props);
 
-  const addToCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
+  const addToCart = (id: number) => {
+    const exsistingItem = cart.find((cartItem: ICartItem) => cartItem.id === id);
+    console.log(exsistingItem);
+    
     setCart(
       exsistingItem
-        ? cart.map((cartItem) =>
+        ? cart.map((cartItem: ICartItem) =>
             cartItem === exsistingItem
               ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
               : cartItem
@@ -66,33 +85,35 @@ const Store = () => {
     );
   };
 
-  const subtractFromCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
+  const subtractFromCart = (id: number) => {
+    const exsistingItem = cart.find((cartItem: ICartItem) => cartItem.id === id);
     setCart(
       exsistingItem.orderCount > 1
-        ? cart.map((cartItem) =>
-            cartItem === cart.find((cartItem) => cartItem.id === id)
+        ? cart.map((cartItem: ICartItem) =>
+            cartItem === cart.find((cartItem: ICartItem) => cartItem.id === id)
               ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
               : cartItem
           )
-        : cart.filter((cartItem) => cartItem !== exsistingItem)
+        : cart.filter((cartItem: ICartItem) => cartItem !== exsistingItem)
     );
   };
 
   const orderCount = cart.reduce(
-    (sum, cartItem) => sum + cartItem.orderCount,
+    (sum: number, cartItem: ICartItem) => sum + cartItem.orderCount,
     0
   );
 
-  const joinProductWithCart = (id) => {
-    const item = products.find((product) => product.id === id);
-    const cartItem = cart.find((cart) => cart.id === id);
+  const joinProductWithCart = (id: number) => {
+    const item: any = products.find((product: IProducts) => product.id === id);
+    const cartItem = cart.find((cart: ICartItem) => cart.id === id);
     return { ...item, ...cartItem };
   };
 
-  const cartItemsJoinedWithProducts = cart.map((cartItem) =>
+let cartItemsJoinedWithProducts = [];
+   cartItemsJoinedWithProducts = cart.map((cartItem: ICartItem) =>
     joinProductWithCart(cartItem.id)
   );
+  console.log(cartItemsJoinedWithProducts);
 
   if (isOpen === true) {
     return (
@@ -112,18 +133,19 @@ const Store = () => {
       <ShopInterface openModal={openModal} orderCount={orderCount} />
       <ProductsWrapper>
         {products &&
-          products.map((product) => {
+          products.map((product: IProducts) => {
             return (
               <ProductWrapper key={product.id}>
                 <Products
-                  brand={product.brand}
-                  name={product.name}
                   caption={product.caption}
-                  unit={product.unit}
                   id={product.id}
                   price={product.price}
                   picture={product.pictures[0].small}
-                  onBuyClick={(event: React.MouseEvent) => addToCart(product.id)}
+                  // onBuyClick={() => addToCart(product.id)}
+                  onBuyClick={() => console.log('fryty')
+                  }
+                  // onBuyClick={(event: React.MouseEvent) => addToCart(product.id)}
+                  brand={product.brand}
                 />
               </ProductWrapper>
             );

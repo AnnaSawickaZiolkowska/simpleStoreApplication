@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 
 const CaptionStyle = styled.span`
@@ -31,10 +31,13 @@ interface Props {
   id: Number;
   price: Number;
   picture: string;
-  onBuyClick: Function;
-}
+  // onBuyClick: Function;
+  onBuyClick: React.MouseEventHandler;
 
-const Products: React.FC<Props> = ({ caption, id, price, picture, onBuyClick }) => {
+  brand: string;
+
+}
+const Products: React.FC<Props> = ({ brand, caption, id, price, picture, onBuyClick }) => {
 
   return (
     <>
@@ -45,7 +48,7 @@ const Products: React.FC<Props> = ({ caption, id, price, picture, onBuyClick }) 
         </CaptionStyle>
       </FlexCenterStyle>
       <FlexCenterStyle>
-        <BasketButtonStyle onClick={onBuyClick}>
+        <BasketButtonStyle onClick={(event: React.MouseEvent) => onBuyClick}>
           Dodaj do koszyka
         </BasketButtonStyle>
         <FlexCenterStyle style={{ marginLeft: "80px" }}>

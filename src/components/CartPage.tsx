@@ -12,35 +12,45 @@ border-top: 1px solid lightgrey;
 border-bottom: 1px solid lightgrey;
 `;
 
-// interface Props {
-//   addToCart: Function;
-//   subtractFromCart: Function;
-//   cartItemsJoinedWithProducts: any;
-
-// }
-
-// const CartPage: React.FC<Props> = ({
-  const CartPage = ({
+interface Props {
+  addToCart: Function;
+  subtractFromCart: Function;
+  cartItemsJoinedWithProducts: any;
+}
+interface ICartProducts {
+  id: number;
+  brand: string;
+  name: string;
+  caption: string;
+  unit: string;
+  price: number;
+  pictures: any;
+  [index: number]: number;
+  orderCount: number;
+  onAddButton: Function;
+  onMinusButton: Function;
+}
+const CartPage: React.FC<Props> = ({
+  // const CartPage = ({
   addToCart,
   subtractFromCart,
   cartItemsJoinedWithProducts,
 }) => {
-
   return (
     <div>
       <HeaderStyle>
         <span>Szczegóły produktu</span>
         <span>Cena za 1 szt.</span>
       </HeaderStyle>
-      {cartItemsJoinedWithProducts.map((cartItem, index) => (
+      {cartItemsJoinedWithProducts.map((cartItem: ICartProducts, index: number) => (
         <div key={index}>
           <main style={{ marginBottom: "30px", width: "100%", borderBottom: "1px solid lightgrey", paddingBottom: "20px"}}>
             <CartItem
+              id={cartItem.id}
               brand={cartItem.brand}
               name={cartItem.name}
               caption={cartItem.caption}
               unit={cartItem.unit}
-              id={cartItem.id}
               price={cartItem.price}
               picture={cartItem.pictures[0].small}
               orderCount={cartItem.orderCount}
