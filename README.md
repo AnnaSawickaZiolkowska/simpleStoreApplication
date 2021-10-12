@@ -4,10 +4,12 @@ Simple web application that allows you to display the list of products, add a pr
 * Downloading product data from the existing API and displaying them in the form of tiles.
 * Products added to the cart are displayed in a separate view.
 * Implemented mechanism for increasing and decrementing the number of the selected product in the cart.
+* My first steps with TypeScript
 
 ## Tech Stack
 
 * React
+* TypeScript
 * Hooks
 * Styled Components
 * Local Storage
