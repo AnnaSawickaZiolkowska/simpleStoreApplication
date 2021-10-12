@@ -32,7 +32,7 @@ interface Props {
 
 const ShopInterface: React.FC<Props> = ({ openModal, orderCount }) => {
   return (
-    <ShopInterfaceWrapper onClick={(event: React.MouseEvent) => openModal}>
+    <ShopInterfaceWrapper onClick={openModal}>
       <div>Przejdź do koszyka</div>
       <IconButton aria-label="cart">
         <StyledBadge badgeContent={orderCount} color="secondary">
