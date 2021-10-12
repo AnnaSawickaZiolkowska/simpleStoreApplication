@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import CartItem from "./CartItem";
+import { IProducts } from "./Store";
 
 const HeaderStyle = styled.header`
 display: flex;
@@ -11,22 +12,23 @@ padding: 15px 50px 15px 95px;
 border-top: 1px solid lightgrey;
 border-bottom: 1px solid lightgrey;
 `;
+interface ICartProducts {
+  brand: string;
+  name: string;
+  caption: string;
+  unit: string;
+  id: number;
+  price: number;
+  pictures: any;
+  orderCount: number;
+  onAddButton: Function;
+  onMinusButton: Function;
+}
 
 interface IProps {
   addToCart: Function;
   subtractFromCart: Function;
-  cartItemsJoinedWithProducts: [{
-    brand: string;
-    name: string;
-    caption: string;
-    unit: string;
-    id: number;
-    price: number;
-    pictures: any;
-    orderCount: number;
-    onAddButton: Function;
-    onMinusButton: Function;
-  }];
+  cartItemsJoinedWithProducts: [ICartProducts];
 }
 
 const CartPage: React.FC<IProps> = ({
@@ -35,7 +37,6 @@ const CartPage: React.FC<IProps> = ({
   cartItemsJoinedWithProducts,
 }) => {
 
-  console.log(cartItemsJoinedWithProducts);
   return (
     <div>
       <HeaderStyle>

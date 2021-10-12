@@ -29,6 +29,9 @@ interface Props {
   orderCount: number;
   onAddButton: Function;
   onMinusButton: Function;
+  name?: string;
+  unit?: string;
+  id?: number;
 }
 
   const CartItem: React.FC<Props> = ({

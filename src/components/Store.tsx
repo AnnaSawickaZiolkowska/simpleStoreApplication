@@ -42,10 +42,28 @@ const CloseIconStyle = styled(CloseIcon)`
   margin: 12px 25px;
 `;
 
+export interface IProducts {
+  brand: string;
+  name: string;
+  caption: string;
+  unit: string;
+  id: number;
+  price: number;
+  picture?: string;
+  pictures?: any;
+  [index: number]: number;
+  onBuyClick: React.MouseEventHandler;
+}
+interface ICartItem {
+  id: number;
+  orderCount: number;
+}
+
 const Store = () => {
   const [cart, setCart] = useLocalStorage("cartList", []);
   const { isOpen, openModal, closeModal } = useModal();
-  const products = useFetchData();
+
+  const products: Array<IProducts> = useFetchData();
 
   const dispatch = useDispatch();
 // const cartTest = useSelector(state => state.cartTest)
@@ -53,11 +71,11 @@ const Store = () => {
   // const {cart} = props;
   // console.log(props);
 
-  const addToCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
+  const addToCart = (id: number) => {
+    const exsistingItem = cart.find((cartItem: IProducts) => cartItem.id === id);
     setCart(
       exsistingItem
-        ? cart.map((cartItem) =>
+        ? cart.map((cartItem: ICartItem) =>
             cartItem === exsistingItem
               ? { ...cartItem, orderCount: cartItem.orderCount + 1 }
               : cartItem
@@ -66,31 +84,31 @@ const Store = () => {
     );
   };
 
-  const subtractFromCart = (id) => {
-    const exsistingItem = cart.find((cartItem) => cartItem.id === id);
+  const subtractFromCart = (id: number) => {
+    const exsistingItem = cart.find((cartItem: ICartItem) => cartItem.id === id);
     setCart(
       exsistingItem.orderCount > 1
-        ? cart.map((cartItem) =>
-            cartItem === cart.find((cartItem) => cartItem.id === id)
+        ? cart.map((cartItem: ICartItem) =>
+            cartItem === cart.find((cartItem: ICartItem) => cartItem.id === id)
               ? { ...cartItem, orderCount: cartItem.orderCount - 1 }
               : cartItem
           )
-        : cart.filter((cartItem) => cartItem !== exsistingItem)
+        : cart.filter((cartItem: ICartItem) => cartItem !== exsistingItem)
     );
   };
 
   const orderCount = cart.reduce(
-    (sum, cartItem) => sum + cartItem.orderCount,
+    (sum: number, cartItem: ICartItem) => sum + cartItem.orderCount,
     0
   );
 
-  const joinProductWithCart = (id) => {
+  const joinProductWithCart = (id: number) => {
     const item = products.find((product) => product.id === id);
-    const cartItem = cart.find((cart) => cart.id === id);
+    const cartItem = cart.find((cart: ICartItem) => cart.id === id);
     return { ...item, ...cartItem };
   };
 
-  const cartItemsJoinedWithProducts = cart.map((cartItem) =>
+  const cartItemsJoinedWithProducts = cart.map((cartItem: IProducts) =>
     joinProductWithCart(cartItem.id)
   );
 
@@ -112,7 +130,7 @@ const Store = () => {
       <ShopInterface openModal={openModal} orderCount={orderCount} />
       <ProductsWrapper>
         {products &&
-          products.map((product) => {
+          products.map((product: IProducts) => {
             return (
               <ProductWrapper key={product.id}>
                 <Products

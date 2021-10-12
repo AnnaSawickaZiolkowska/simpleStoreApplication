@@ -26,8 +26,8 @@ const ShopInterfaceWrapper = styled.div`
   cursor: pointer;
 `;
 interface Props {
-  openModal: Function;
-  orderCount: Number;
+  openModal: React.MouseEventHandler;
+  orderCount: number;
 }
 
 const ShopInterface: React.FC<Props> = ({ openModal, orderCount }) => {

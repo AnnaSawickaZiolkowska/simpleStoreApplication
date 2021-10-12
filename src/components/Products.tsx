@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { IProducts } from "./Store";
 
 const CaptionStyle = styled.span`
   font-size: 10px;
@@ -32,9 +33,13 @@ interface Props {
   price: Number;
   picture: string;
   onBuyClick: React.MouseEventHandler;
+  brand: string;
+  name: string;
 }
 
-const Products: React.FC<Props> = ({ caption, id, price, picture, onBuyClick }) => {
+// const Products: React.FC<Props> = ({ 
+  const Products: React.FC<IProducts> = ({ 
+caption, id, price, picture, onBuyClick }) => {
 
   return (
     <>
