@@ -66,10 +66,13 @@ const Store = () => {
   const products: Array<IProducts> = useFetchData();
 
   const dispatch = useDispatch();
+  interface ICartItem {
+    id: number;
+    orderCount: number;
+  }
+  
 // const cartTest = useSelector(state => state.cartTest)
 
-  // const {cart} = props;
-  // console.log(props);
 
   const addToCart = (id: number) => {
     const exsistingItem = cart.find((cartItem: IProducts) => cartItem.id === id);
@@ -111,6 +114,7 @@ const Store = () => {
   const cartItemsJoinedWithProducts = cart.map((cartItem: IProducts) =>
     joinProductWithCart(cartItem.id)
   );
+  console.log(cartItemsJoinedWithProducts);
 
   if (isOpen === true) {
     return (
@@ -134,14 +138,15 @@ const Store = () => {
             return (
               <ProductWrapper key={product.id}>
                 <Products
-                  brand={product.brand}
-                  name={product.name}
                   caption={product.caption}
-                  unit={product.unit}
                   id={product.id}
                   price={product.price}
                   picture={product.pictures[0].small}
-                  onBuyClick={(event: React.MouseEvent) => addToCart(product.id)}
+                  // onBuyClick={() => addToCart(product.id)}
+                  onBuyClick={() => console.log('fryty')
+                  }
+                  // onBuyClick={(event: React.MouseEvent) => addToCart(product.id)}
+                  brand={product.brand}
                 />
               </ProductWrapper>
             );

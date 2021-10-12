@@ -22,8 +22,11 @@ const OrderCountStyle = styled.div`
 `;
 
 interface Props {
+  id: number;
   brand: string;
+  name: string;
   caption: string;
+  unit: string;
   price: number;
   picture: string;
   orderCount: number;

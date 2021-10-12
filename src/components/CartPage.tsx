@@ -36,7 +36,6 @@ const CartPage: React.FC<IProps> = ({
   subtractFromCart,
   cartItemsJoinedWithProducts,
 }) => {
-
   return (
     <div>
       <HeaderStyle>
@@ -47,11 +46,11 @@ const CartPage: React.FC<IProps> = ({
         <div key={index}>
           <main style={{ marginBottom: "30px", width: "100%", borderBottom: "1px solid lightgrey", paddingBottom: "20px"}}>
             <CartItem
+              id={cartItem.id}
               brand={cartItem.brand}
               name={cartItem.name}
               caption={cartItem.caption}
               unit={cartItem.unit}
-              id={cartItem.id}
               price={cartItem.price}
               picture={cartItem.pictures[0].small}
               orderCount={cartItem.orderCount}

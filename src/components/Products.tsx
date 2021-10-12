@@ -1,4 +1,4 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import styled from "styled-components";
 import { IProducts } from "./Store";
 
@@ -50,7 +50,7 @@ caption, id, price, picture, onBuyClick }) => {
         </CaptionStyle>
       </FlexCenterStyle>
       <FlexCenterStyle>
-        <BasketButtonStyle onClick={onBuyClick}>
+        <BasketButtonStyle onClick={(event: React.MouseEvent) => onBuyClick}>
           Dodaj do koszyka
         </BasketButtonStyle>
         <FlexCenterStyle style={{ marginLeft: "80px" }}>
