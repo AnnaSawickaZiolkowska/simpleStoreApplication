@@ -27,17 +27,16 @@ const FlexCenterStyle = styled.div`
   justify-self: flex-start;
 `;
 
-interface Props {
-  caption: string;
-  id: Number;
-  price: Number;
-  picture: string;
-  onBuyClick: React.MouseEventHandler;
-  brand: string;
-  name: string;
-}
+// interface Props {
+//   caption: string;
+//   id: Number;
+//   price: Number;
+//   picture: string;
+//   onBuyClick: React.MouseEventHandler;
+//   brand: string;
+//   name: string;
+// }
 
-// const Products: React.FC<Props> = ({ 
   const Products: React.FC<IProducts> = ({ 
 caption, id, price, picture, onBuyClick }) => {
 
