@@ -12,27 +12,37 @@ border-top: 1px solid lightgrey;
 border-bottom: 1px solid lightgrey;
 `;
 
-// interface Props {
-//   addToCart: Function;
-//   subtractFromCart: Function;
-//   cartItemsJoinedWithProducts: any;
+interface IProps {
+  addToCart: Function;
+  subtractFromCart: Function;
+  cartItemsJoinedWithProducts: [{
+    brand: string;
+    name: string;
+    caption: string;
+    unit: string;
+    id: number;
+    price: number;
+    pictures: any;
+    orderCount: number;
+    onAddButton: Function;
+    onMinusButton: Function;
+  }];
+}
 
-// }
-
-// const CartPage: React.FC<Props> = ({
-  const CartPage = ({
+const CartPage: React.FC<IProps> = ({
   addToCart,
   subtractFromCart,
   cartItemsJoinedWithProducts,
 }) => {
 
+  console.log(cartItemsJoinedWithProducts);
   return (
     <div>
       <HeaderStyle>
         <span>Szczegóły produktu</span>
         <span>Cena za 1 szt.</span>
       </HeaderStyle>
-      {cartItemsJoinedWithProducts.map((cartItem, index) => (
+      {cartItemsJoinedWithProducts.map((cartItem, index: number) => (
         <div key={index}>
           <main style={{ marginBottom: "30px", width: "100%", borderBottom: "1px solid lightgrey", paddingBottom: "20px"}}>
             <CartItem

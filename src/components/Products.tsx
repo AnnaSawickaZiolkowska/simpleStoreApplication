@@ -31,9 +31,7 @@ interface Props {
   id: Number;
   price: Number;
   picture: string;
-  // onBuyClick: Function;
   onBuyClick: React.MouseEventHandler;
-
 }
 
 const Products: React.FC<Props> = ({ caption, id, price, picture, onBuyClick }) => {
