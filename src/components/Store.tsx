@@ -72,7 +72,7 @@ const Store = () => {
   // console.log(props);
 
   const addToCart = (id: number) => {
-    const exsistingItem = cart.find((cartItem: IProducts) => cartItem.id === id);
+    const exsistingItem = cart.find((cartItem: ICartItem) => cartItem.id === id);
     setCart(
       exsistingItem
         ? cart.map((cartItem: ICartItem) =>
@@ -108,7 +108,7 @@ const Store = () => {
     return { ...item, ...cartItem };
   };
 
-  const cartItemsJoinedWithProducts = cart.map((cartItem: IProducts) =>
+  const cartItemsJoinedWithProducts = cart.map((cartItem: ICartItem) =>
     joinProductWithCart(cartItem.id)
   );
 

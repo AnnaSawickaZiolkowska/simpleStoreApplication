@@ -8,7 +8,7 @@ const useFetchData = () => {
       const url = "https://www.rossmann.pl/products/api/Products";
       try {
         const response = await fetch(url);
-        const json = await response.json();
+        const json = await response.json();        
         const fetchingProducts = json.data.products;
         setProducts(fetchingProducts);
       } catch (error) {
